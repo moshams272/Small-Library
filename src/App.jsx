@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import Books from './Pages/Books/Books';
 import Login from './Pages/Login/Login'
 import BookDetails from './Pages/Books/BookDetails';
+import Notfound from './Pages/Notfound/Notfound';
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
       <Route path="/books" element={<Books/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path='/bookDetails/:id' element={<BookDetails/>}/>
+      <Route path="*" element={<Notfound/>}/>
     </Routes>
     </BrowserRouter>
     </>
