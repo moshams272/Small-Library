@@ -1,26 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../AxiosConfig/AxiosConfig";
 export default function Books() {
+  const books=useLoaderData();
   const navigate = useNavigate();
-  const [books, setBooks] = useState([]);
-  async function getApi() {
-    try {
-      const res = await axios.get("https://www.dbooks.org/api/recent");
-      setBooks(res.data.books);
-    } catch (err) {
-      console.log(err);
-    }
-  }
   const go = (id) => {
     navigate(`/bookDetails/${id}`);
   };
-  useEffect(() => {
-    getApi();
-  }, []);
   return (
     <>
       <div style={{ padding: "80px" }}>
@@ -57,4 +45,8 @@ export default function Books() {
       </div>
     </>
   );
+}
+export const loader= async()=>{
+  const res = await axiosInstance.get("/recent");
+  return res.data.books;
 }

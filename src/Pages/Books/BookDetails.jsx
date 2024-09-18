@@ -1,23 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import bookStyle from "./BookDetails.module.css"
+import { axiosInstance } from "../../AxiosConfig/AxiosConfig";
 export default function BookDetails(){
-  const {id}=useParams();
-  const [book, setBook] = useState([]);
-  async function getDetails() {
-    try {
-      const res = await axios.get(`https://www.dbooks.org/api/book/${id}`);
-      setBook(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  useEffect(() => {
-    getDetails();
-    console.log(book);
-  }, []);
+  const book=useLoaderData();
     return(
         <>
         <div className={bookStyle.book}>
@@ -41,3 +27,7 @@ export default function BookDetails(){
         </>
     )
 }
+export const loader = async(arg)=>{
+  const res = await axiosInstance.get(`/book/${arg.params.id}`);
+  return res.data;
+};
