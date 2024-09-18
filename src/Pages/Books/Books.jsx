@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../AxiosConfig/AxiosConfig";
 import { useSelector } from "react-redux";
-import Loader from "../../component/Loader";
+import Loader from "../../component/Loader/Loader";
 export default function Books() {
   const load = useSelector((state) => state.loader.loader);
   const books = useLoaderData();

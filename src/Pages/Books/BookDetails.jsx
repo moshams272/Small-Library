@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import bookStyle from "./BookDetails.module.css";
 import { axiosInstance } from "../../AxiosConfig/AxiosConfig";
 import { useSelector } from "react-redux";
-import Loader from "../../component/Loader";
+import Loader from "../../component/Loader/Loader";
 export default function BookDetails() {
   const load = useSelector((state) => state.loader.loader);
   const book = useLoaderData();
